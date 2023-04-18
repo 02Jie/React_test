@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+<script type="text/babel">
+    class Weather extends React.Component {
+        state = {isHot:false}
+        render() {
+            let {isHot} = this.state
+            return <div onClick = {this.handleWeather}><h1  >今天天气很{isHot ? '凉爽' : '热'}</h1></div>
+        }
+        handleWeather = () => {
+        let {isHot} = this.state
+        this.setState({
+            isHot:!isHot
+        })
+        }
+    }
+
+    ReactDOM.render(<Weather />,document.getElementById('box'))
+</script>
+
+</html>
