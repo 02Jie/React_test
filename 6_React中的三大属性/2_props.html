@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+<script type="text/babel">
+     class Person extends React.Component {
+        render() {
+            const {name,age,sex,hobby} = this.props
+            return (
+                <ul>
+                    <li>姓名：{name}</li>
+                    <li>年龄：{age}</li>
+                    <li>性别：{sex}</li>
+                    <li>爱好：{hobby}</li>
+                </ul>
+            )
+        }
+     }
+     //假设这是后端返回给我的值
+     const data = {name:"小红帽",age:18,sex:"女"}
+     ReactDOM.render(<Person {...data}  hobby='打代码' />,document.getElementById('box'))
+</script>
+
+</html>
