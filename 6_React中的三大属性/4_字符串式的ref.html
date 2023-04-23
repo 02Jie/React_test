@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+<script type="text/babel">
+    // 需求：点击按钮提示左侧输入框输入的内容，右侧输入框失去焦点弹出右侧输入框输入的内容
+    class Demo extends React.Component {
+        showData =() => {
+                console.log(this);
+                const {leftInput} = this.refs
+                alert(leftInput.value)
+            }
+        showData2 =() => {
+            const {rightInput} = this.refs
+            alert(rightInput.value)
+        }  
+        render(){
+            return (
+                <div>
+                    <input ref='leftInput' type='text' placeholder='请输入左侧内容' />
+                     <button onClick={this.showData}> 点我展示数据</button>
+                    <input ref='rightInput' type='text' placeholder='请输入右侧内容,失去焦点我会弹出信息框' onBlur={this.showData2} />
+                    </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Demo />,document.getElementById('box'))
+</script>
+
+</html>
