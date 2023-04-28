@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+<script type="text/babel">
+   // 需求1：使用内联ref  将输入框的值alert出来  
+   // 需求2：点击一个按钮 将今天天气很凉爽 变为 今天天机很炎热 再次点击反之  
+    class Demo extends React.Component {
+        //第一步：创建state 并添加属性
+        state = {
+            isHot:false
+        }
+        handleInputInfo = ()=> {
+            const {input} = this
+            alert(input.value)
+        }
+        handleWether = ()=> {
+            const {isHot} = this.state
+            this.setState ({
+                isHot:!isHot
+            })
+        }
+        render() {
+            //第二步：获取state
+            let {isHot} = this.state
+            console.log(this.state,"state");
+            return (
+                <div>
+                    <div><h3>今天天气很{isHot ? '凉爽':'炎热'}</h3></div>
+                    <input ref={currentNode => this.input = currentNode} /> <br />
+                    <button onClick={this.handleInputInfo}>点我弹出信息</button>
+                    <button onClick={this.handleWether}>点我更改天气信息</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Demo />,document.getElementById('box'))
+</script>
+
+</html>
